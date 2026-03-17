@@ -27,6 +27,9 @@ import {
   Send,
 } from "lucide-react";
 import { type Language, useTranslation } from "@/lib/i18n";
+import { SharedHowItWorks } from "@/components/shared/SharedHowItWorks";
+import { SharedResources } from "@/components/shared/SharedResources";
+import { SharedCta } from "@/components/shared/SharedCta";
 
 // =============================================
 // TELEGRAM THEME COLORS
@@ -75,7 +78,7 @@ export default function TelegramPage() {
                   Conecte bots do Telegram e gerencie conversas com sua equipe a
                   partir de
                   <span className="text-white font-semibold">
-                    {" "}
+                    {""}
                     uma única plataforma profissional.
                   </span>
                 </p>
@@ -94,7 +97,7 @@ export default function TelegramPage() {
                 <div className="flex items-center space-x-3 text-sky-100">
                   <Send className="w-5 h-5" />
                   <span className="text-sm font-medium">
-                    Ou{" "}
+                    Ou{""}
                     <a
                       href="#"
                       className="underline hover:no-underline font-semibold text-white hover:text-sky-200 transition-colors"
@@ -123,7 +126,7 @@ export default function TelegramPage() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-full h-full bg-white rounded-3xl flex items-center justify-center shadow-2xl transform hover:scale-105 transition-transform duration-300">
                     <img
-                      src="https://www.callbell.eu/assets/uploads/2023/04/Telegram-bot-4.svg"
+                      src="https://www.callbell.eu/assets/uploads/2023/04/Telegram.svg"
                       alt="telegram"
                       className="w-full h-auto scale-150"
                     />
@@ -168,7 +171,7 @@ export default function TelegramPage() {
       {/* ============================================= */}
       {/* FEATURES */}
       {/* ============================================= */}
-      <div className="bg-white dark:bg-black">
+      <div className="bg-white">
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -183,13 +186,13 @@ export default function TelegramPage() {
               </div>
               <div className="space-y-6">
                 <div className="w-full space-y-6">
-                  <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight text-right">
-                    Converse com seus clientes{" "}
+                  <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight text-right">
+                    Converse com seus clientes{""}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0088CC] to-[#34C8E8]">
                       pelo Telegram
                     </span>
                   </h2>
-                  <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-right">
+                  <p className="text-lg text-gray-600 leading-relaxed text-right">
                     Gerencie conversas do Telegram Bot entre equipes, configure
                     respostas rápidas e automações inteligentes para o seu bot.
                   </p>
@@ -199,7 +202,7 @@ export default function TelegramPage() {
           </div>
         </section>
 
-        <section className="py-20 bg-gray-50 dark:bg-black">
+        <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-6 lg:order-2">
@@ -213,13 +216,13 @@ export default function TelegramPage() {
               </div>
               <div className="space-y-6 lg:order-1">
                 <div className="w-full space-y-6">
-                  <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight text-left">
+                  <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight text-left">
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0088CC] to-[#34C8E8]">
                       Analise estatísticas
-                    </span>{" "}
+                    </span>{""}
                     e métricas do Telegram
                   </h2>
-                  <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-left">
+                  <p className="text-lg text-gray-600 leading-relaxed text-left">
                     Visualize KPIs do Telegram em tempo real: volume de
                     mensagens, tempos de resposta e performance da equipe.
                   </p>
@@ -272,122 +275,61 @@ export default function TelegramPage() {
         </section>
       </div>
 
+
       {/* ============================================= */}
       {/* RESOURCES */}
       {/* ============================================= */}
-      <section id="features-section" className="py-20 dark:bg-black">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-sky-100 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300 border-0">
-              Recursos Principais
-            </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0088CC] to-[#34C8E8]">
-                Tudo que você precisa
-              </span>{" "}
-              <span className="text-foreground">para o Telegram</span>
-            </h2>
-          </div>
+      <SharedResources
+        badgeText="Recursos Principais"
+        titleHighlight="Tudo que você precisa"
+        titleRest="para o Telegram"
+        subtitle="Ferramentas poderosas para gerenciar suas conversas e equipe no Telegram Bot."
+        badgeClass="bg-sky-100 text-sky-700 border-0"
+        iconBgClass="bg-sky-100 group-hover:bg-sky-200"
+        iconColorClass="text-[#0088CC]"
+        themeGradientClass="bg-gradient-to-r from-[#0088CC] to-[#34C8E8]"
+        features={[
+          { icon: Database, title: "Caixa de Entrada Unificada", desc: "Todas as mensagens do Telegram Bot centralizadas." },
+          { icon: Shield, title: "Multi Agentes", desc: "Vários agentes atendendo pelo mesmo bot simultaneamente." },
+          { icon: Zap, title: "Bots Inteligentes", desc: "Automatize respostas e qualifique leads com bots." },
+          { icon: Globe, title: "API & Integrações", desc: "Conecte com CRMs e ferramentas via API ou Zapier." },
+          { icon: Smartphone, title: "App Mobile", desc: "Gerencie atendimentos do Telegram pelo celular." },
+          { icon: HeadphonesIcon, title: "Suporte 24/7", desc: "Equipe disponível 24h por dia, 7 dias por semana." }
+        ]}
+      />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { icon: Database, title: "Caixa de Entrada Unificada", desc: "Todas as mensagens do Telegram Bot centralizadas." },
-              { icon: Shield, title: "Multi Agentes", desc: "Vários agentes atendendo pelo mesmo bot simultaneamente." },
-              { icon: Zap, title: "Bots Inteligentes", desc: "Automatize respostas e qualifique leads com bots." },
-              { icon: Globe, title: "API & Integrações", desc: "Conecte com CRMs e ferramentas via API ou Zapier." },
-              { icon: Smartphone, title: "App Mobile", desc: "Gerencie atendimentos do Telegram pelo celular." },
-              { icon: HeadphonesIcon, title: "Suporte 24/7", desc: "Equipe disponível 24h por dia." },
-            ].map((feature, i) => (
-              <Card key={i} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-sky-100 dark:bg-sky-500/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-sky-200 dark:group-hover:bg-sky-500/20 transition-colors">
-                    <feature.icon className="h-6 w-6 text-[#0088CC]" />
-                  </div>
-                  <CardTitle>{feature.title}</CardTitle>
-                  <CardDescription>{feature.desc}</CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* ============================================= */}
       {/* HOW IT WORKS */}
       {/* ============================================= */}
-      <section className="py-20 dark:bg-black">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-sky-100 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300 border-0">
-              Como Funciona
-            </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0088CC] to-[#34C8E8]">
-                Simples de configurar,
-              </span>{" "}
-              poderoso de usar
-            </h2>
-          </div>
+      <SharedHowItWorks
+        badgeText="Como Funciona"
+        titleHighlight="Simples de configurar,"
+        titleRest="poderoso de usar"
+        subtitle="Em apenas alguns passos você terá o Telegram Bot integrado e funcionando perfeitamente."
+        badgeClass="bg-sky-100 text-sky-700 border-0"
+        themeGradientStyle={{ background: "linear-gradient(135deg, #0088CC, #34C8E8)" }}
+        themeGradientClass="bg-gradient-to-r from-[#0088CC] to-[#34C8E8]"
+        steps={[
+          { num: "1", title: "Conecte seu Bot", desc: "Vincule o token do seu Telegram Bot em menos de 2 minutos." },
+          { num: "2", title: "Convide sua equipe", desc: "Adicione agentes e configure rotas de atendimento." },
+          { num: "3", title: "Comece a Atender", desc: "Gerencie todas as conversas em uma única interface." }
+        ]}
+      />
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {[
-              { num: "1", title: "Conecte seu Bot", desc: "Vincule o token do seu Telegram Bot em menos de 2 minutos." },
-              { num: "2", title: "Convide sua equipe", desc: "Adicione agentes e configure rotas de atendimento." },
-              { num: "3", title: "Comece a Atender", desc: "Gerencie todas as conversas em uma única interface." },
-            ].map((step, i) => (
-              <div key={i} className="text-center space-y-4">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-sky-500/25" style={{ background: "linear-gradient(135deg, #0088CC, #34C8E8)" }}>
-                  <span className="text-2xl font-bold text-white">{step.num}</span>
-                </div>
-                <h3 className="text-xl font-semibold">{step.title}</h3>
-                <p className="text-muted-foreground">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* ============================================= */}
       {/* CTA */}
       {/* ============================================= */}
-      <section
-        className="py-20"
-        style={{
-          background:
-            "linear-gradient(135deg, #006DAA 0%, #0088CC 30%, #2AABEE 60%, #34C8E8 100%)",
-        }}
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white">
-              Pronto para transformar seu atendimento no Telegram?
-            </h2>
-            <p className="text-xl text-white/90">
-              Junte-se a mais de 1.000 empresas que já centralizam o atendimento
-              via Telegram Bot.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-sky-700 hover:bg-gray-100 h-12 px-8"
-              >
-                Falar com nossa equipe
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-white text-white hover:bg-white/10 h-12 px-8"
-              >
-                Agendar Demo
-              </Button>
-            </div>
-            <p className="text-sm text-white">
-              7 dias grátis • Sem cartão de crédito • Suporte 24/7
-            </p>
-          </div>
-        </div>
-      </section>
+      <SharedCta
+        title="Pronto para transformar seu atendimento no Telegram?"
+        subtitle="Junte-se a mais de 1.000 empresas que já centralizam o atendimento via Telegram Bot."
+        themeGradientStyle={{ background: "linear-gradient(135deg, #006DAA 0%, #0088CC 30%, #2AABEE 60%, #34C8E8 100%)" }}
+        buttonTextBg="text-sky-700 hover:bg-gray-100"
+      />
+
     </div>
   );
 }

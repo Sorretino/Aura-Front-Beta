@@ -151,7 +151,7 @@ const NavHeader: React.FC = () => {
                 )
               )}
 
-              {/* Se for "Plataforma", adicionar os botões especiais */}
+              {/* Se for"Plataforma", adicionar os botões especiais */}
               {item.label === "Plataforma" && (
                 <>
                   <div className="border-t border-gray-200 my-2"></div>
@@ -161,7 +161,7 @@ const NavHeader: React.FC = () => {
                     </div>
 
                     {/* Botão Start Tour */}
-                    <Button
+                    {/* <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => setIsTourOpen(true)}
@@ -169,7 +169,7 @@ const NavHeader: React.FC = () => {
                     >
                       <Play className="h-4 w-4" />
                       {t.startTour}
-                    </Button>
+                    </Button> */}
 
                     {/* Language Selector */}
                     <div className="flex items-center justify-between">
@@ -181,10 +181,10 @@ const NavHeader: React.FC = () => {
                     </div>
 
                     {/* Theme Toggle */}
-                    <div className="flex items-center justify-between">
+                    {/* <div className="flex items-center justify-between">
                       <span className="text-sm text-foreground">Tema:</span>
                       <ThemeToggle />
-                    </div>
+                    </div> */}
                   </div>
                 </>
               )}
@@ -239,29 +239,27 @@ const NavHeader: React.FC = () => {
       />
 
       <header
-        className={`fixed top-3.5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300  ${
-          isScrolled
-            ? "bg-gray-100 dark:bg-[#1B1B1B]/40 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-[80%] shadow-2xl rounded-full"
-            : "bg-[#ffffff] dark:bg-[#1B1B1B] w-[100%] max-w-[100%] border border-white/10 "
-        }`}
+        className={`fixed top-3.5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${isScrolled
+          ? "bg-gray-100 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-[80%] shadow-2xl rounded-full"
+          : "bg-[#ffffff] ] w-[100%] max-w-[100%] border border-white/10"
+          }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className={`flex items-center py-4 transition-all duration-300 ${
-              isScrolled ? "justify-center gap-8" : "justify-between"
-            }`}
+            className={`flex items-center py-4 transition-all duration-300 ${isScrolled ? "justify-center gap-8" : "justify-between"
+              }`}
           >
             {/* Logo - sempre visível mas com transição suave */}
-          <Link href="/">
-            <div className="flex items-center space-x-2">
-              <img 
-                src="/assets/aura_crm.png" 
-                alt="Aura CRM Logo" 
-                className="h-20 w-32 object-contain" 
-              />
-             
-            </div>
-          </Link>
+            <Link href="/">
+              <div className="flex items-center space-x-2">
+                <img
+                  src="/assets/Aura_logo.png"
+                  alt="Aura CRM Logo"
+                  className="h-20 w-32 object-contain"
+                />
+
+              </div>
+            </Link>
             {/* Navegação dinâmica */}
             <nav className="hidden md:flex items-center space-x-8 max-w-[80%]">
               {/* Renderizar todos os itens de navegação dinamicamente */}
@@ -272,9 +270,8 @@ const NavHeader: React.FC = () => {
               {/* Botão CTA sempre visível */}
               <FreeTrialButton
                 variant="primary"
-                className={`${
-                  isScrolled ? "px-4 py-2 text-sm" : "px-6 py-2"
-                }`}
+                className={`${isScrolled ? "px-4 py-2 text-sm" : "px-6 py-2"
+                  }`}
               >
                 {t.startFree}
               </FreeTrialButton>
@@ -292,70 +289,70 @@ export default NavHeader;
 }
 {
   /* <header
-        className={`fixed top-3.5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-full ${
-          isScrolled
-            ? " bg-gray-100 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-[80%]"
-            : " bg-[#ffffff] w-[95%] max-w-[70%]"
-        }`}
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-2">
-              <Building2 className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold text-foreground">
-                ThunderWave
-              </span>
-            </div>
-            <nav className="hidden md:flex items-center space-x-8">
-              <button
-                onClick={() => scrollToSection("features-section")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {t.features}
-              </button>
-              <button
-                onClick={() => scrollToSection("pricing-section")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {t.pricing}
-              </button>
-              <button
-                onClick={() => scrollToSection("testimonials-section")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {t.testimonials}
-              </button>
-              <Link
-                href="/details"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {t.details}
-              </Link>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsTourOpen(true)}
-                className="gap-2"
-              >
-                <Play className="h-4 w-4" />
-                {t.startTour}
-              </Button>
-              <LanguageSelector
-                currentLang={currentLanguage}
-                onLanguageChange={setCurrentLanguage}
-              />
-              <ThemeToggle />
-              <Button
-                variant="outline"
-                className="bg-background text-foreground border-border"
-              >
-                {t.login}
-              </Button>
-              <Button className="bg-CustomGreen hover:bg-CustomGreen/90 text-primary-foreground">
-                {t.startFree}
-              </Button>
-            </nav>
-          </div>
-        </div>
-      </header> */
+  className={`fixed top-3.5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-full ${
+  isScrolled
+  ?"bg-gray-100 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-[80%]"
+  :"bg-[#ffffff] w-[95%] max-w-[70%]"
+  }`}
+  >
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="flex justify-between items-center py-4">
+  <div className="flex items-center space-x-2">
+  <Building2 className="h-8 w-8 text-primary"/>
+  <span className="text-2xl font-bold text-foreground">
+  ThunderWave
+  </span>
+  </div>
+  <nav className="hidden md:flex items-center space-x-8">
+  <button
+  onClick={() => scrollToSection("features-section")}
+  className="text-muted-foreground hover:text-foreground transition-colors"
+  >
+  {t.features}
+  </button>
+  <button
+  onClick={() => scrollToSection("pricing-section")}
+  className="text-muted-foreground hover:text-foreground transition-colors"
+  >
+  {t.pricing}
+  </button>
+  <button
+  onClick={() => scrollToSection("testimonials-section")}
+  className="text-muted-foreground hover:text-foreground transition-colors"
+  >
+  {t.testimonials}
+  </button>
+  <Link
+  href="/details"
+  className="text-muted-foreground hover:text-foreground transition-colors"
+  >
+  {t.details}
+  </Link>
+  <Button
+  variant="ghost"
+  size="sm"
+  onClick={() => setIsTourOpen(true)}
+  className="gap-2"
+  >
+  <Play className="h-4 w-4"/>
+  {t.startTour}
+  </Button>
+  <LanguageSelector
+  currentLang={currentLanguage}
+  onLanguageChange={setCurrentLanguage}
+  />
+  <ThemeToggle />
+  <Button
+  variant="outline"
+  className="bg-background text-foreground border-border"
+  >
+  {t.login}
+  </Button>
+  <Button className="bg-CustomGreen hover:bg-CustomGreen/90 text-primary-foreground">
+  {t.startFree}
+  </Button>
+  </nav>
+  </div>
+  </div>
+  </header> */
 }
