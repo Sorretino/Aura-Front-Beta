@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Card,
   CardContent,
@@ -11,67 +10,38 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import {
-  Building2,
   Users,
-  Shield,
   Zap,
-  BarChart3,
   Globe,
   CheckCircle,
   Star,
   ArrowRight,
-  Phone,
-  Mail,
-  MapPin,
-  Database,
-  Smartphone,
   HeadphonesIcon,
-  Play,
   MessageCircle,
   Instagram,
   Facebook,
   Send,
-  Check,
+  Bot,
+  Layers,
+  TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
 import { type Language, useTranslation } from "@/lib/i18n";
-import { LanguageSelector } from "@/components/language-selector";
-import { TourGuide } from "@/components/tour-guide";
-import { PlanComparator } from "@/components/plan-comparator";
-import { TicketSystem } from "@/components/ticket-system";
-import { ThemeToggle } from "@/components/theme-toggle";
-import Features from "@/components/features/Features";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
-import WhatsAppBusinessPage from "@/components/WhatsAppBusinessPage";
-import NavHeader from "@/components/Heade";
-import Hero from "@/components/hero/Hero";
-import Recurse from "@/components/recurse/Recurses";
-import NavFooter from "@/components/footer/Footer";
-import ScrollTimeline from "@/components/scrollTime/timeScroll";
-import Timeline from "@/components/scrollTime/timevone";
+import { FreeTrialButton } from "@/components/FreeTrial";
+import PricingSection from "@/components/PricingSection";
+
+// =============================================
+// BRAND COLORS — ROXO / INDIGO (Identidade do Produto)
+// Primary: #6366F1 (Indigo-500)
+// Dark:    #4F46E5 (Indigo-600)
+// Light:   #818CF8 (Indigo-400)
+// Accent:  #A78BFA (Violet-400)
+// =============================================
 
 export default function HomePage() {
-  const [currentPage, setCurrentPage] = useState<"home" | "whatsapp-business">(
-    "home"
-  );
   const [currentLanguage, setCurrentLanguage] = useState<Language>("pt");
-  const [isTourOpen, setIsTourOpen] = useState(false);
-
-  const handlePageChange = (page: "home" | "whatsapp-business") => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  if (currentPage === "whatsapp-business") {
-    return (
-      <div className="min-h-screen bg-white dark:bg-black transition-colors duration-300">
-        <WhatsAppBusinessPage onBack={() => handlePageChange("home")} />
-        <WhatsAppWidget />
-      </div>
-    );
-  }
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -83,228 +53,228 @@ export default function HomePage() {
     }
   };
 
-  const [isScrolled, setIsScrolled] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 550);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   const t = useTranslation(currentLanguage);
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Tour Guide */}
-      <TourGuide
-        isOpen={isTourOpen}
-        onClose={() => setIsTourOpen(false)}
-        language={currentLanguage}
-      />
-      {/* Header */}
-      {/* <header
-        className={`fixed top-3.5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-full ${
-          isScrolled
-            ? " bg-gray-100 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-[80%] shadow-2xl"
-            : " bg-[#ffffff] w-[95%] max-w-[70%] border border-white/10 "
-        }`}
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className={`flex  items-center py-4    transition-all duration-300 ${
-              isScrolled ? " justify-center gap-8" : " justify-between "
-            }`}
-            //className="flex justify-between items-center py-4 gap-5"
-          >
-            <div className="flex items-center space-x-2">
-              <Building2 className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold text-foreground">
-                ThunderWave
-              </span>
+      {/* ============================================= */}
+      {/* HERO SECTION — Identidade do Produto (Roxo) */}
+      {/* ============================================= */}
+      <section className="relative h-screen pt-20 pb-0 overflow-hidden">
+        {/* Background gradient roxo sutil */}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-violet-50 dark:from-[#0a0a1a] dark:via-black dark:to-[#0d0a1f]"></div>
+
+        {/* Decorative blurred circles */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-indigo-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-violet-400/15 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-300/10 rounded-full blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col items-center justify-center min-h-[770px] text-center">
+            {/* Badge */}
+            <div className="inline-flex items-center px-4 py-2 bg-indigo-100 dark:bg-indigo-500/10 rounded-full text-sm font-medium text-indigo-700 dark:text-indigo-300 mb-8">
+              <Zap className="w-4 h-4 mr-2" />
+              Plataforma de atendimento multi-canal
             </div>
-            <nav className="hidden md:flex items-center space-x-8 max-w-[80%] ">
-              <button
-                onClick={() => scrollToSection("features-section")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+
+            {/* Headline */}
+            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 max-w-4xl">
+              <span className="text-foreground">
+                Centralize seus
+              </span>
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 dark:from-indigo-400 dark:via-violet-400 dark:to-purple-400">
+                canais de atendimento
+              </span>
+              <br />
+              <span className="text-foreground">
+                em uma única plataforma
+              </span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-10">
+              Gerencie conversas do WhatsApp, Instagram, Facebook Messenger e
+              Telegram em uma única interface poderosa. Multi-agentes, chatbots e
+              relatórios — tudo em um só lugar.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <FreeTrialButton
+                variant="primary"
+                className="h-14 px-10 text-lg"
               >
-                {t.features}
-              </button>
-              <button
-                onClick={() => scrollToSection("pricing-section")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {t.pricing}
-              </button>
-              <button
-                onClick={() => scrollToSection("testimonials-section")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {t.testimonials}
-              </button>
-              <Link
-                href="/details"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {t.details}
-              </Link>
+                Comece grátis — 15 dias
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </FreeTrialButton>
               <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsTourOpen(true)}
-                className="gap-2"
-              >
-                <Play className="h-4 w-4" />
-                {t.startTour}
-              </Button>
-              <LanguageSelector
-                currentLang={currentLanguage}
-                onLanguageChange={setCurrentLanguage}
-              />
-              <ThemeToggle />
-              <Button
+                size="lg"
                 variant="outline"
-                className="bg-background text-foreground border-border"
+                className="h-14 px-10 text-lg rounded-full border-2 border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-950 transition-all duration-300"
               >
-                {t.login}
+                Agendar Demo
               </Button>
-              <Button className="bg-CustomGreen hover:bg-CustomGreen/90 text-primary-foreground">
-                {t.startFree}
-              </Button>
-            </nav>
+            </div>
+
+            {/* Trust indicators */}
+            <div className="flex items-center space-x-6 text-sm text-muted-foreground mb-12">
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="h-4 w-4 text-indigo-500" />
+                <span>15 dias grátis</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="h-4 w-4 text-indigo-500" />
+                <span>Sem cartão de crédito</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="h-4 w-4 text-indigo-500" />
+                <span>Suporte 24/7</span>
+              </div>
+            </div>
+
+            {/* Channel Icons */}
+            <div className="flex items-center gap-6">
+              <Link
+                href="/whatsapp"
+                className="group flex flex-col items-center gap-2"
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-green-500/30 transition-all duration-300 group-hover:scale-110">
+                  <MessageCircle className="w-7 h-7 text-white" />
+                </div>
+                <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                  WhatsApp
+                </span>
+              </Link>
+              <Link
+                href="/instagram"
+                className="group flex flex-col items-center gap-2"
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-pink-500/30 transition-all duration-300 group-hover:scale-110">
+                  <Instagram className="w-7 h-7 text-white" />
+                </div>
+                <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                  Instagram
+                </span>
+              </Link>
+              <div className="group flex flex-col items-center gap-2 cursor-pointer">
+                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-blue-500/30 transition-all duration-300 group-hover:scale-110">
+                  <Facebook className="w-7 h-7 text-white" />
+                </div>
+                <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                  Messenger
+                </span>
+              </div>
+              <div className="group flex flex-col items-center gap-2 cursor-pointer">
+                <div className="w-14 h-14 bg-gradient-to-br from-sky-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-sky-500/30 transition-all duration-300 group-hover:scale-110">
+                  <Send className="w-7 h-7 text-white" />
+                </div>
+                <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                  Telegram
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-      </header> */}
+      </section>
 
-      <NavHeader />
-      {/* Hero Section1 */}
-      <Hero />
-
-      {/* Hero Section */}
-      <section
-        id="hero-section"
-        className="relative bg-gradient-to-br from-primary/5 via-background to-primary/10 py-20 lg:py-32"
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <Badge className="bg-primary/10 text-primary hover:bg-primary/10">
-                  🚀 Nova Era do Multiatendimento
-                </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-                  {t.heroTitle}
-                  <span className="text-CustonCabe dark:text-CustomBtnDev">
-                    {" "}
-                    {t.heroTitleHighlight}
-                  </span>{" "}
-                  {t.heroTitleEnd}
-                </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                  {t.heroDescription}
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="flex-1">
-                  <Input
-                    placeholder={t.emailPlaceholder}
-                    className="h-12 text-lg"
-                  />
-                </div>
-                <Button
-                  size="lg"
-                  className="bg-CustonCabe dark:bg-CustomBtnDev dark:text-white hover:bg-CustonCabe/90 text-primary-foreground h-12 px-8"
-                >
-                  {t.startFreeTrial}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </div>
-
-              <div className="flex items-center space-x-6 text-sm text-muted-foreground">
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-4 w-4 text-primary dark:text-CustomBtnDev" />
-                  <span>{t.freeDays}</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-4 w-4 text-primary dark:text-CustomBtnDev" />
-                  <span>{t.noCard}</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-4 w-4 text-primary dark:text-CustomBtnDev" />
-                  <span>{t.support247}</span>
-                </div>
-              </div>
-
-              {/* Support Actions */}
-              <div className="flex items-center gap-4 pt-4">
-                <div className="text-sm text-muted-foreground">
-                  {t.needHelp}
-                </div>
-                <TicketSystem language={currentLanguage} />
+      {/* ============================================= */}
+      {/* FEATURES SECTION — O que oferecemos */}
+      {/* ============================================= */}
+      <section className="py-20 bg-white dark:bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Chat Feature */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
+            <div className="space-y-6">
+              <div className="max-w-3xl flex items-center justify-center">
+                <img
+                  src="https://www.callbell.eu/assets/uploads/2023/10/Group-4-4.png"
+                  alt="Interface de chat multi-canal"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
               </div>
             </div>
+            <div className="space-y-6">
+              <div className="w-full space-y-6">
+                <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight text-right">
+                  Caixa de entrada{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400">
+                    unificada
+                  </span>{" "}
+                  para todos os canais
+                </h2>
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-right">
+                  Centralize todas as conversas de WhatsApp, Instagram Direct,
+                  Facebook Messenger e Telegram em um só lugar. Sua equipe pode
+                  responder clientes de forma organizada e eficiente.
+                </p>
+              </div>
+            </div>
+          </div>
 
-            <div className="relative">
-              <div className="bg-card rounded-2xl shadow-2xl p-8 border border-border">
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold">
-                      Dashboard Principal
-                    </h3>
-                    <Badge variant="secondary">Live</Badge>
+          {/* Analytics */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
+            <div className="space-y-6 lg:order-2">
+              <div className="max-w-3xl flex items-center justify-center">
+                <img
+                  src="https://www.callbell.eu/assets/uploads/2023/10/Group-1000010623-4.svg"
+                  alt="Dashboard de análise"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              </div>
+            </div>
+            <div className="space-y-6 lg:order-1">
+              <div className="w-full space-y-6">
+                <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight text-left">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400">
+                    Métricas e relatórios
+                  </span>{" "}
+                  em tempo real
+                </h2>
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-left">
+                  Visualize KPIs, tempo de resposta, volume de mensagens e
+                  performance da equipe em dashboards personalizáveis. Tome
+                  decisões baseadas em dados.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Automation Section — Gradient Card */}
+          <div
+            className="rounded-3xl p-12 text-white"
+            style={{
+              background:
+                "linear-gradient(135deg, #4F46E5 0%, #6366F1 40%, #8B5CF6 70%, #A78BFA 100%)",
+            }}
+          >
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <h2 className="text-3xl lg:text-4xl font-bold leading-tight">
+                  Automatize com Chatbots e APIs
+                </h2>
+                <p className="text-lg text-indigo-100 leading-relaxed">
+                  Configure chatbots inteligentes para responder automaticamente
+                  perguntas frequentes, qualificar leads e transferir conversas
+                  para agentes humanos quando necessário. Integre via API ou
+                  Zapier.
+                </p>
+                <button className="px-8 py-3 bg-white text-indigo-600 font-semibold rounded-lg hover:bg-gray-50 transition-all duration-200 transform hover:scale-105">
+                  Criar uma conta gratuita
+                </button>
+              </div>
+              <div className="flex justify-center">
+                <div className="relative">
+                  <div className="max-w-3xl flex items-center justify-center">
+                    <img
+                      src="https://www.callbell.eu/assets/uploads/2023/04/WhatsApp-6.svg"
+                      alt="Automação com chatbots"
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
                   </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <Card>
-                      <CardContent className="p-4">
-                        <div className="flex items-center space-x-2">
-                          <Users className="h-5 w-5 text-primary" />
-                          <div>
-                            <p className="text-2xl font-bold">1,247</p>
-                            <p className="text-sm text-muted-foreground">
-                              Tenants Ativos
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    <Card>
-                      <CardContent className="p-4">
-                        <div className="flex items-center space-x-2">
-                          <BarChart3 className="h-5 w-5 text-primary" />
-                          <div>
-                            <p className="text-2xl font-bold">98.9%</p>
-                            <p className="text-sm text-muted-foreground">
-                              Uptime
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-sm">
-                      <span>Cliente A - E-commerce</span>
-                      <Badge className="bg-primary/10 text-primary">
-                        Ativo
-                      </Badge>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span>Cliente B - SaaS</span>
-                      <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">
-                        Ativo
-                      </Badge>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span>Cliente C - Marketplace</span>
-                      <Badge className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300">
-                        Ativo
-                      </Badge>
-                    </div>
-                  </div>
+                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-yellow-400 rounded-full animate-ping"></div>
+                  <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-violet-300 rounded-full animate-pulse"></div>
+                  <div className="absolute top-1/2 -right-4 w-2 h-2 bg-pink-400 rounded-full animate-bounce"></div>
                 </div>
               </div>
             </div>
@@ -312,359 +282,235 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/*Features Section
-       */}
-      <Features />
-      {/* Features Section */}
-      {/* ScrollTime Section */}
-      <ScrollTimeline />
-      <Timeline />
-      {/* ScrollTime Section */}
-      {/* Recusos Section */}
-      <Recurse currentLanguage={currentLanguage} />
-      {/* Recusos Section */}
-      {/* How it Works */}
+      {/* ============================================= */}
+      {/* RESOURCES SECTION — Recursos Principais */}
+      {/* ============================================= */}
+      <section id="features-section" className="py-20 dark:bg-black">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-4 mb-16">
+            <Badge className="bg-indigo-100 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300 border-0">
+              Recursos Principais
+            </Badge>
+            <h2 className="text-3xl lg:text-4xl font-bold">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400">
+                Tudo que você precisa
+              </span>{" "}
+              <span className="text-foreground">para atender melhor</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Ferramentas poderosas para centralizar conversas, automatizar
+              processos e escalar seu atendimento.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Layers,
+                title: "Multi-Canal",
+                desc: "WhatsApp, Instagram, Messenger e Telegram em uma única caixa de entrada.",
+              },
+              {
+                icon: Users,
+                title: "Multi-Agentes",
+                desc: "Conecte vários agentes ao mesmo canal. Distribua conversas automaticamente.",
+              },
+              {
+                icon: Bot,
+                title: "Chatbots Inteligentes",
+                desc: "Automatize respostas, qualifique leads e transfira para agentes humanos.",
+              },
+              {
+                icon: TrendingUp,
+                title: "Relatórios em Tempo Real",
+                desc: "Dashboards com métricas de atendimento, tempo de resposta e satisfação.",
+              },
+              {
+                icon: Globe,
+                title: "API & Integrações",
+                desc: "Conecte com CRMs, ERPs e ferramentas via API robusta ou Zapier.",
+              },
+              {
+                icon: HeadphonesIcon,
+                title: "Suporte 24/7",
+                desc: "Equipe especializada disponível 24 horas por dia, 7 dias por semana.",
+              },
+            ].map((feature, i) => (
+              <Card
+                key={i}
+                className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-1"
+              >
+                <CardHeader>
+                  <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-500/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-200 dark:group-hover:bg-indigo-500/20 transition-colors">
+                    <feature.icon className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+                  </div>
+                  <CardTitle>{feature.title}</CardTitle>
+                  <CardDescription>{feature.desc}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================= */}
+      {/* HOW IT WORKS */}
+      {/* ============================================= */}
       <section className="py-20 dark:bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-primary/10 text-primary">Como Funciona</Badge>
+            <Badge className="bg-indigo-100 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300 border-0">
+              Como Funciona
+            </Badge>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-              <span className="text-CustonCabe dark:text-CustomBtnDev">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400">
                 Simples de configurar,
               </span>{" "}
               poderoso de usar
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Em apenas alguns passos você terá sua plataforma multitenant
+              Em apenas alguns passos você terá sua plataforma de atendimento
               funcionando perfeitamente.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <span className="text-2xl font-bold text-primary">1</span>
+              <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-indigo-500/25">
+                <span className="text-2xl font-bold text-white">1</span>
               </div>
-              <h3 className="text-xl font-semibold">Cadastre-se</h3>
+              <h3 className="text-xl font-semibold">Conecte seus canais</h3>
               <p className="text-muted-foreground">
-                Crie sua conta em menos de 2 minutos. Sem complicações, sem
-                burocracia.
+                Vincule WhatsApp, Instagram, Messenger e Telegram em menos de 5
+                minutos.
               </p>
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <span className="text-2xl font-bold text-primary">2</span>
+              <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-indigo-500/25">
+                <span className="text-2xl font-bold text-white">2</span>
               </div>
-              <h3 className="text-xl font-semibold">Configure seus Tenants</h3>
+              <h3 className="text-xl font-semibold">Convide sua equipe</h3>
               <p className="text-muted-foreground">
-                Adicione seus clientes e configure as permissões e
-                personalizações para cada um.
+                Adicione seus agentes e configure as permissões e rotas de
+                atendimento para cada um.
               </p>
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <span className="text-2xl font-bold text-primary">3</span>
+              <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-indigo-500/25">
+                <span className="text-2xl font-bold text-white">3</span>
               </div>
-              <h3 className="text-xl font-semibold">Comece a Gerenciar</h3>
+              <h3 className="text-xl font-semibold">Comece a Atender</h3>
               <p className="text-muted-foreground">
-                Acesse o dashboard e comece a gerenciar todos os seus negócios
-                em um só lugar.
+                Acesse o dashboard e gerencie todos os seus canais em uma
+                interface unificada.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing-section" className="py-20 dark:bg-black">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-primary/10 text-primary">
-              Planos e Preços
-            </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-CustonCabe dark:text-CustomBtnDev">
-              {t.pricingTitle}{" "}
-              <span className="text-foreground">{t.pricingTitleSub}</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              {t.pricingDescription}
-            </p>
-            <div className="pt-4">
-              <PlanComparator language={currentLanguage} />
-            </div>
-          </div>
+      {/* ============================================= */}
+      {/* PRICING SECTION — Modern Redesign */}
+      {/* ============================================= */}
+      <PricingSection currentLanguage={currentLanguage} />
 
-          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Starter Plan border-border*/}
-            <Card className="border-2  border-border dark:border-white/10 hover:border-rose-500/50 transition-colors dark:bg-gradient-to-b from-neutral-900 to-neutral-950 h-full">
-              <CardHeader className="text-center pb-8">
-                <CardTitle className="text-2xl">Essencial</CardTitle>
-                <CardDescription>Perfeito para começar</CardDescription>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold">R$ 99</span>
-                  <span className="text-muted-foreground">{t.month}</span>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <Check className="w-5 h-5 text-primary" />
-                    <span>Até 5 tenants</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>10GB de armazenamento</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>Suporte por email</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>SSL gratuito</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>Backup diário</span>
-                  </div>
-                </div>
-                <Button className="w-full mt-8 bg-rose-500 hover:bg-rose-500/90 text-primary-foreground">
-                  Começar Grátis
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Professional Plan */}
-            <Card
-              className="relative rounded-xl dark:bg-gradient-to-b from-neutral-900 to-neutral-950 h-full dark:hover:border-CustomBtnDev/80 transition-colors border-CustonCabe dark:border-CustomBtnDev  border-2"
-              // className="border-2 border-CustomBtnGreen relative hover:border-primary/80 transition-colors "
-            >
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <Badge className="bg-CustonCabe dark:bg-CustomBtnDev text-primary-foreground px-4 py-1">
-                  {t.popular}
-                </Badge>
-              </div>
-              <CardHeader className="text-center pb-8">
-                <CardTitle className="text-2xl">Professional</CardTitle>
-                <CardDescription>Para empresas em crescimento</CardDescription>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold">R$ 299</span>
-                  <span className="text-muted-foreground">{t.month}</span>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>Até 25 tenants</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>100GB de armazenamento</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>Suporte prioritário</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>API avançada</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>Relatórios detalhados</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>Integrações ilimitadas</span>
-                  </div>
-                </div>
-                <Button
-                  // style={{
-                  //   background:
-                  //     "linear-gradient(42deg, #075e54 40%, #25d366 100%)",
-                  // }}
-                  className="w-full mt-8 bg-CustonCabe dark:bg-CustomBtnDev dark:hover:bg-CustomBtnDev/90 text-primary-foreground"
-                >
-                  Começar Teste
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Enterprise Plan */}
-            <Card className="border-2 border-border dark:border-white/10 hover:border-indigo-600/50 transition-colors dark:bg-gradient-to-b from-neutral-900 to-neutral-950 h-full">
-              <CardHeader className="text-center pb-8">
-                <CardTitle className="text-2xl">Enterprise</CardTitle>
-                <CardDescription>Para grandes organizações</CardDescription>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold">R$ 899</span>
-                  <span className="text-muted-foreground">{t.month}</span>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>Tenants ilimitados</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>1TB de armazenamento</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>Suporte 24/7</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>SLA 99.9%</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>Gerente dedicado</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span>Customizações</span>
-                  </div>
-                </div>
-                <Button className="w-full mt-8 bg-indigo-600 hover:bg-indigo-600/90 text-primary-foreground">
-                  Falar com Vendas
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
+      {/* ============================================= */}
+      {/* TESTIMONIALS */}
+      {/* ============================================= */}
       <section id="testimonials-section" className="py-20 dark:bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-primary/10 text-primary">Depoimentos</Badge>
+            <Badge className="bg-indigo-100 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300 border-0">
+              Depoimentos
+            </Badge>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
               O que nossos clientes dizem
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Mais de 1.000 empresas confiam em nossa plataforma para gerenciar
-              seus negócios.
+              Mais de 1.000 empresas confiam em nossa plataforma para centralizar
+              seus canais de atendimento.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8">
-                <div className="flex items-center space-x-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-6">
-                  "A MultiTenant Pro revolucionou nossa forma de gerenciar
-                  múltiplos clientes. A segurança e isolamento de dados nos dá
-                  total confiança."
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-semibold">MR</span>
+            {[
+              {
+                text: "A plataforma revolucionou nossa forma de atender clientes. Centralizamos WhatsApp e Instagram em um só lugar e a produtividade triplicou.",
+                name: "Maria Rodriguez",
+                role: "CTO, TechCorp",
+                initials: "MR",
+              },
+              {
+                text: "Implementamos em 2 semanas e já estamos atendendo 50+ clientes em múltiplos canais. O suporte é excepcional e a plataforma é muito intuitiva.",
+                name: "João Silva",
+                role: "CEO, StartupXYZ",
+                initials: "JS",
+              },
+              {
+                text: "A escalabilidade é impressionante. Crescemos de 10 para 200 agentes sem nenhum problema de performance. Recomendo fortemente!",
+                name: "Ana Santos",
+                role: "Diretora, MegaCorp",
+                initials: "AS",
+              },
+            ].map((testimonial, i) => (
+              <Card key={i} className="border-0 shadow-lg">
+                <CardContent className="p-8">
+                  <div className="flex items-center space-x-1 mb-4">
+                    {[...Array(5)].map((_, j) => (
+                      <Star
+                        key={j}
+                        className="h-5 w-5 fill-yellow-400 text-yellow-400"
+                      />
+                    ))}
                   </div>
-                  <div>
-                    <p className="font-semibold">Maria Rodriguez</p>
-                    <p className="text-sm text-muted-foreground">
-                      CTO, TechCorp
-                    </p>
+                  <p className="text-muted-foreground mb-6">
+                    "{testimonial.text}"
+                  </p>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-semibold text-sm">
+                        {testimonial.initials}
+                      </span>
+                    </div>
+                    <div>
+                      <p className="font-semibold">{testimonial.name}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {testimonial.role}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8">
-                <div className="flex items-center space-x-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-6">
-                  "Implementamos em 2 semanas e já estamos gerenciando 50+
-                  clientes. O suporte é excepcional e a plataforma é muito
-                  intuitiva."
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-semibold">JS</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold">João Silva</p>
-                    <p className="text-sm text-muted-foreground">
-                      CEO, StartupXYZ
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8">
-                <div className="flex items-center space-x-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-6">
-                  "A escalabilidade é impressionante. Crescemos de 10 para 200
-                  tenants sem nenhum problema de performance. Recomendo
-                  fortemente!"
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-semibold">AS</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold">Ana Santos</p>
-                    <p className="text-sm text-muted-foreground">
-                      Diretora, MegaCorp
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section bg-gradient-to-r from-primary to-primary/80*/}
+      {/* ============================================= */}
+      {/* CTA SECTION — Gradient Roxo */}
+      {/* ============================================= */}
       <section
-        className="py-20 "
+        className="py-20"
         style={{
-          background: "linear-gradient(42deg, #075e54 40%, #25d366 100%)",
+          background:
+            "linear-gradient(135deg, #4F46E5 0%, #6366F1 40%, #8B5CF6 70%, #A78BFA 100%)",
         }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto space-y-8">
             <h2 className="text-3xl lg:text-4xl font-bold text-white">
-              Pronto para transformar seu negócio?
+              Pronto para transformar seu atendimento?
             </h2>
             <p className="text-xl text-white/90">
-              Junte-se a mais de 1.000 empresas que já confiam na MultiTenant
-              Pro para gerenciar seus múltiplos negócios.
+              Junte-se a mais de 1.000 empresas que já centralizam seus canais de
+              atendimento em uma única plataforma.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-white text-neutral-800 hover:bg-gray/10 h-12 px-8"
+                className="bg-white text-indigo-700 hover:bg-gray-100 h-12 px-8 font-semibold transition-all duration-300 hover:scale-105"
               >
                 Falar com nossa equipe
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -672,21 +518,19 @@ export default function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-transparent border-white text-white hover:bg-transparent hover:text-primary h-12 px-8"
+                className="bg-transparent border-white text-white hover:bg-white/10 h-12 px-8"
               >
                 Agendar Demo
               </Button>
             </div>
-            <p className="text-sm text-white">
-              14 dias grátis • Sem cartão de crédito • Suporte 24/7
+            <p className="text-sm text-white/80">
+              7 dias grátis • Sem cartão de crédito • Suporte 24/7
             </p>
           </div>
         </div>
       </section>
 
-      <WhatsAppWidget />
-      {/* Footer */}
-      <NavFooter />
+      {/* <WhatsAppWidget /> */}
     </div>
   );
 }

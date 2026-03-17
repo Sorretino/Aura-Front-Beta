@@ -11,21 +11,21 @@ const NavFooter: React.FC = () => {
         <div className="grid lg:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Building2 className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold">ThunderWave</span>
+              <Building2 className="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
+              <span className="text-2xl font-bold">Aura <span className="text-indigo-600 dark:text-indigo-400">CRM</span></span>
             </div>
             <p className="text-muted-foreground">
               A plataforma mais avançada para gerenciamento de múltiplos
               negócios em uma única solução.
             </p>
             <div className="flex space-x-4">
-              <div className="w-10 h-10 g-mute dark:bg-neutral-900 rounded-lg flex items-center justify-center hover:bg-muted/80 cursor-pointer">
+              <div className="w-10 h-10 dark:bg-neutral-900 bg-indigo-50 rounded-lg flex items-center justify-center hover:bg-indigo-100 dark:hover:bg-neutral-800 cursor-pointer">
                 <span className="text-primary">f</span>
               </div>
-              <div className="w-10 h-10 bg-mute dark:bg-neutral-900 rounded-lg flex items-center justify-center hover:bg-muted/80 cursor-pointer">
+              <div className="w-10 h-10 bg-indigo-50 dark:bg-neutral-900 rounded-lg flex items-center justify-center hover:bg-indigo-100 dark:hover:bg-neutral-800 cursor-pointer">
                 <span className="text-primary">t</span>
               </div>
-              <div className="w-10 h-10 g-mute dark:bg-neutral-900 rounded-lg flex items-center justify-center hover:bg-muted/80 cursor-pointer">
+              <div className="w-10 h-10 dark:bg-neutral-900 bg-indigo-50 rounded-lg flex items-center justify-center hover:bg-indigo-100 dark:hover:bg-neutral-800 cursor-pointer">
                 <span className="text-primary">in</span>
               </div>
             </div>
@@ -129,7 +129,7 @@ const NavFooter: React.FC = () => {
         <Separator className="my-8" />
 
         <div className="flex flex-col md:flex-row justify-between items-center text-muted-foreground">
-          <p>&copy; 2024 MultiTenant Pro. Todos os direitos reservados.</p>
+          <p>&copy; 2024 Aura CRM. Todos os direitos reservados.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="#" className="hover:text-foreground transition-colors">
               Privacidade

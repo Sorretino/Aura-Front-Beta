@@ -33,6 +33,7 @@ import { type Language, useTranslation } from "@/lib/i18n";
 import { LanguageSelector } from "@/components/language-selector";
 import { TourGuide } from "@/components/tour-guide";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { FreeTrialButton } from "@/components/FreeTrial";
 
 const NavHeader: React.FC = () => {
   const [currentLanguage, setCurrentLanguage] = useState<Language>("pt");
@@ -46,7 +47,7 @@ const NavHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 750);
+      setIsScrolled(window.scrollY > 950);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -89,22 +90,22 @@ const NavHeader: React.FC = () => {
       dropdownItems: [
         {
           label: "WhatsApp",
-          href: "/whatsappbusinnes",
+          href: "/whatsapp",
           description: "Plataforma principal de mensagens",
         },
         {
           label: "Instagram",
-          href: "#",
+          href: "/instagram",
           description: "Direct Messages do Instagram",
         },
         {
           label: "Facebook Messenger",
-          href: "#",
-          description: "Mensagens do Facebook",
+          href: "/messenger",
+          description: "Mensagens do Facebook Messenger",
         },
         {
           label: "Telegram",
-          href: "#",
+          href: "/telegram",
           description: "Bot e mensagens do Telegram",
         },
       ],
@@ -238,10 +239,10 @@ const NavHeader: React.FC = () => {
       />
 
       <header
-        className={`fixed top-3.5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-full ${
+        className={`fixed top-3.5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300  ${
           isScrolled
-            ? "bg-gray-100 dark:bg-[#1B1B1B]/40 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-[80%] shadow-2xl"
-            : "bg-[#ffffff] dark:bg-[#1B1B1B] w-[95%] max-w-[70%] border border-white/10"
+            ? "bg-gray-100 dark:bg-[#1B1B1B]/40 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-[80%] shadow-2xl rounded-full"
+            : "bg-[#ffffff] dark:bg-[#1B1B1B] w-[100%] max-w-[100%] border border-white/10 "
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -251,13 +252,16 @@ const NavHeader: React.FC = () => {
             }`}
           >
             {/* Logo - sempre visível mas com transição suave */}
+          <Link href="/">
             <div className="flex items-center space-x-2">
-              <Building2 className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold text-foreground">
-                ThunderWave
-              </span>
+              <img 
+                src="/assets/aura_crm.png" 
+                alt="Aura CRM Logo" 
+                className="h-20 w-32 object-contain" 
+              />
+             
             </div>
-
+          </Link>
             {/* Navegação dinâmica */}
             <nav className="hidden md:flex items-center space-x-8 max-w-[80%]">
               {/* Renderizar todos os itens de navegação dinamicamente */}
@@ -266,13 +270,14 @@ const NavHeader: React.FC = () => {
               )}
 
               {/* Botão CTA sempre visível */}
-              <Button
-                className={`bg-CustonCabe hover:bg-CustomBtnGreen text-white rounded-full transition-all duration-300 ${
+              <FreeTrialButton
+                variant="primary"
+                className={`${
                   isScrolled ? "px-4 py-2 text-sm" : "px-6 py-2"
                 }`}
               >
                 {t.startFree}
-              </Button>
+              </FreeTrialButton>
             </nav>
           </div>
         </div>
