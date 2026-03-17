@@ -3,6 +3,7 @@
 import NavHeader from "@/components/Heade";
 import NavFooter from "@/components/footer/Footer";
 import FooterSection from "./footer/FooterSection";
+import { FloatingCta } from "@/components/FloatingCta";
 
 export default function LayoutShell({
   children,
@@ -19,6 +20,7 @@ export default function LayoutShell({
         </div>
       </div> */}
 
+      <FloatingCta />
       <NavFooter />
     </>
   );

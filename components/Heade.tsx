@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -36,6 +37,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { FreeTrialButton } from "@/components/FreeTrial";
 
 const NavHeader: React.FC = () => {
+  const pathname = usePathname();
   const [currentLanguage, setCurrentLanguage] = useState<Language>("pt");
   const [isTourOpen, setIsTourOpen] = useState(false);
 
@@ -64,6 +66,22 @@ const NavHeader: React.FC = () => {
     }
   };
   const t = useTranslation(currentLanguage);
+
+  let themeColor = "indigo";
+  if (pathname.includes("whatsapp")) themeColor = "green";
+  else if (pathname.includes("telegram")) themeColor = "sky";
+  else if (pathname.includes("messenger")) themeColor = "blue";
+  else if (pathname.includes("instagram")) themeColor = "pink";
+
+  const themeClasses: Record<string, any> = {
+    indigo: { btnPrimaryBg: "from-indigo-600 to-violet-600", btnPrimaryHover: "hover:from-indigo-700 hover:to-violet-700" },
+    green: { btnPrimaryBg: "from-green-600 to-emerald-600", btnPrimaryHover: "hover:from-green-700 hover:to-emerald-700" },
+    pink: { btnPrimaryBg: "from-pink-600 to-rose-600", btnPrimaryHover: "hover:from-pink-700 hover:to-rose-700" },
+    sky: { btnPrimaryBg: "from-sky-500 to-cyan-500", btnPrimaryHover: "hover:from-sky-600 hover:to-cyan-600" },
+    blue: { btnPrimaryBg: "from-blue-600 to-sky-600", btnPrimaryHover: "hover:from-blue-700 hover:to-sky-700" },
+  };
+
+  const tc = themeClasses[themeColor] || themeClasses.indigo;
 
   // Dados de navegação
   const navigationItems = [
@@ -255,7 +273,7 @@ const NavHeader: React.FC = () => {
                 <img
                   src="/assets/Aura_logo.png"
                   alt="Aura CRM Logo"
-                  className="h-20 w-32 object-contain"
+                  className="h-10 w-32 object-contain"
                 />
 
               </div>
@@ -269,13 +287,83 @@ const NavHeader: React.FC = () => {
 
               {/* Botão CTA sempre visível */}
               <FreeTrialButton
-                variant="primary"
-                className={`${isScrolled ? "px-4 py-2 text-sm" : "px-6 py-2"
+                variant="custom"
+                className={`text-white shadow-lg shadow-black/5 bg-gradient-to-r ${tc.btnPrimaryBg} ${tc.btnPrimaryHover} transition-all duration-300 border-0 ${isScrolled ? "px-4 py-2 text-sm" : "px-6 py-2"
                   }`}
               >
                 {t.startFree}
               </FreeTrialButton>
             </nav>
+
+            {/* Menu Mobile Toggle */}
+            <div className="md:hidden flex items-center xl:hidden mt-2 ml-4">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-600 hover:text-gray-900 focus:outline-none"
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        {/* Menu Mobile Dropdown */}
+        <div 
+          className={`md:hidden absolute top-full left-0 w-full bg-white shadow-xl shadow-black/10 transition-all duration-300 overflow-hidden ${
+            isMenuOpen ? "max-h-[80vh] py-4 border-t border-gray-100" : "max-h-0 py-0 overflow-hidden"
+          } rounded-b-2xl`}
+        >
+          <div className="px-4 flex flex-col space-y-2 max-h-[70vh] overflow-y-auto">
+            {navigationItems.map((item, index) => {
+               if (item.hasDropdown) {
+                   const sectionMap: Record<string, string> = {
+                       Recurso: "features-section",
+                       Plano: "pricing-section",
+                       Depoimentos: "testimonials-section",
+                   };
+                   return (
+                       <button
+                           key={`mobile-${index}`}
+                           onClick={() => {
+                               setIsMenuOpen(false);
+                               scrollToSection(sectionMap[item.label] || `${item.label.toLowerCase()}-section`);
+                           }}
+                           className="text-left w-full py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-md font-medium"
+                       >
+                           {item.label}
+                       </button>
+                   );
+               }
+
+               return (
+                   <Link
+                      key={`mobile-${index}`}
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block w-full py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-md font-medium"
+                   >
+                     {item.label}
+                   </Link>
+               );
+            })}
+            
+            <div className="pt-4 mt-2 border-t border-gray-100 flex flex-col gap-4 px-2 pb-4">
+               {/* Language Selector in Mobile */}
+               <div className="flex items-center justify-between px-2">
+                 <span className="text-sm font-medium text-gray-700">Idioma:</span>
+                 <LanguageSelector
+                    currentLang={currentLanguage}
+                    onLanguageChange={setCurrentLanguage}
+                 />
+               </div>
+
+               <FreeTrialButton
+                  variant="custom"
+                  className={`w-full text-white bg-gradient-to-r ${tc.btnPrimaryBg} ${tc.btnPrimaryHover} py-3 shadow-md border-0 mt-4`}
+               >
+                 {t.startFree}
+               </FreeTrialButton>
+            </div>
           </div>
         </div>
       </header>
@@ -284,75 +372,4 @@ const NavHeader: React.FC = () => {
 };
 
 export default NavHeader;
-{
-  /* <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50"> */
-}
-{
-  /* <header
-  className={`fixed top-3.5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-full ${
-  isScrolled
-  ?"bg-gray-100 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-[80%]"
-  :"bg-[#ffffff] w-[95%] max-w-[70%]"
-  }`}
-  >
-  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-  <div className="flex justify-between items-center py-4">
-  <div className="flex items-center space-x-2">
-  <Building2 className="h-8 w-8 text-primary"/>
-  <span className="text-2xl font-bold text-foreground">
-  ThunderWave
-  </span>
-  </div>
-  <nav className="hidden md:flex items-center space-x-8">
-  <button
-  onClick={() => scrollToSection("features-section")}
-  className="text-muted-foreground hover:text-foreground transition-colors"
-  >
-  {t.features}
-  </button>
-  <button
-  onClick={() => scrollToSection("pricing-section")}
-  className="text-muted-foreground hover:text-foreground transition-colors"
-  >
-  {t.pricing}
-  </button>
-  <button
-  onClick={() => scrollToSection("testimonials-section")}
-  className="text-muted-foreground hover:text-foreground transition-colors"
-  >
-  {t.testimonials}
-  </button>
-  <Link
-  href="/details"
-  className="text-muted-foreground hover:text-foreground transition-colors"
-  >
-  {t.details}
-  </Link>
-  <Button
-  variant="ghost"
-  size="sm"
-  onClick={() => setIsTourOpen(true)}
-  className="gap-2"
-  >
-  <Play className="h-4 w-4"/>
-  {t.startTour}
-  </Button>
-  <LanguageSelector
-  currentLang={currentLanguage}
-  onLanguageChange={setCurrentLanguage}
-  />
-  <ThemeToggle />
-  <Button
-  variant="outline"
-  className="bg-background text-foreground border-border"
-  >
-  {t.login}
-  </Button>
-  <Button className="bg-CustomGreen hover:bg-CustomGreen/90 text-primary-foreground">
-  {t.startFree}
-  </Button>
-  </nav>
-  </div>
-  </div>
-  </header> */
-}
+
