@@ -24,13 +24,15 @@ interface FreeTrialModalProps {
 }
 
 export function FreeTrialModal({ isOpen, onClose }: FreeTrialModalProps) {
-  const [step, setStep] = useState<"form" | "success">("form");
+  const [step, setStep] = useState<"form" | "company" | "success">("form");
   const [showPassword, setShowPassword] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
+    segment: "",
+    taxId: "",
     phone: "",
     password: "",
   });
@@ -53,6 +55,11 @@ export function FreeTrialModal({ isOpen, onClose }: FreeTrialModalProps) {
   }, [isOpen]);
 
   if (!isOpen || !mounted) return null;
+
+  const handleNextStep = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStep("company");
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,7 +95,7 @@ export function FreeTrialModal({ isOpen, onClose }: FreeTrialModalProps) {
           <X className="w-4 h-4 text-white" />
         </button>
 
-        {step === "form" ? (
+        {step === "form" && (
           <>
             {/* Header gradient */}
             <div
@@ -101,7 +108,7 @@ export function FreeTrialModal({ isOpen, onClose }: FreeTrialModalProps) {
               <div className="flex items-center gap-2 mb-3">
                 <Sparkles className="w-5 h-5 text-yellow-300" />
                 <span className="text-sm font-medium text-indigo-100">
-                  Teste grátis por 15 dias
+                  Passo 1 de 2 • Teste grátis
                 </span>
               </div>
               <h2 className="text-2xl font-bold text-white mb-2">
@@ -113,7 +120,7 @@ export function FreeTrialModal({ isOpen, onClose }: FreeTrialModalProps) {
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="px-8 py-6 space-y-4">
+            <form onSubmit={handleNextStep} className="px-8 py-6 space-y-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Nome completo
@@ -145,35 +152,19 @@ export function FreeTrialModal({ isOpen, onClose }: FreeTrialModalProps) {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Empresa
-                  </label>
-                  <Input
-                    placeholder="Nome da empresa"
-                    value={formData.company}
-                    onChange={(e) =>
-                      setFormData({ ...formData, company: e.target.value })
-                    }
-                    className="h-11 rounded-xl border-gray-200 dark:border-neutral-700 focus:border-indigo-500 focus:ring-indigo-500"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Telefone
-                  </label>
-                  <Input
-                    placeholder="(11) 99999-9999"
-                    value={formData.phone}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
-                    className="h-11 rounded-xl border-gray-200 dark:border-neutral-700 focus:border-indigo-500 focus:ring-indigo-500"
-                    required
-                  />
-                </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Telefone
+                </label>
+                <Input
+                  placeholder="(11) 99999-9999"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                  className="h-11 rounded-xl border-gray-200 dark:border-neutral-700 focus:border-indigo-500 focus:ring-indigo-500"
+                  required
+                />
               </div>
 
               <div className="space-y-2">
@@ -208,13 +199,13 @@ export function FreeTrialModal({ isOpen, onClose }: FreeTrialModalProps) {
 
               <Button
                 type="submit"
-                className="w-full h-12 text-lg font-semibold bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white rounded-xl shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/30"
+                className="w-full h-12 text-lg font-semibold bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white rounded-xl shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/30 mt-2"
               >
-                Criar conta grátis
+                Próximo passo
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
 
-              <div className="space-y-3 pt-2">
+              <div className="space-y-3 pt-4">
                 <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                   <CheckCircle className="w-4 h-4 text-indigo-500 flex-shrink-0" />
                   <span>15 dias grátis — acesso completo</span>
@@ -240,9 +231,112 @@ export function FreeTrialModal({ isOpen, onClose }: FreeTrialModalProps) {
                 </Link>
                 .
               </p>
+
+              <div className="flex items-center justify-center gap-2 pt-2">
+                <div className="w-2 h-2 rounded-full bg-indigo-600 border border-indigo-600"></div>
+                <div className="w-2 h-2 rounded-full border border-gray-300 dark:border-gray-600"></div>
+              </div>
             </form>
           </>
-        ) : (
+        )}
+
+        {step === "company" && (
+          <>
+            {/* Header gradient */}
+            <div
+              className="px-8 pt-8 pb-6"
+              style={{
+                background:
+                  "linear-gradient(135deg, #4F46E5 0%, #6366F1 40%, #8B5CF6 70%, #A78BFA 100%)",
+              }}
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <Sparkles className="w-5 h-5 text-yellow-300" />
+                <span className="text-sm font-medium text-indigo-100">
+                  Passo 2 de 2 • Sobre sua empresa
+                </span>
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-2">
+                Nos conte um pouco sobre o seu negócio
+              </h2>
+              <p className="text-indigo-100 text-sm">
+                Isso nos ajuda a personalizar sua experiência no painel.
+              </p>
+            </div>
+
+            {/* Form Step 2 */}
+            <form onSubmit={handleSubmit} className="px-8 py-6 space-y-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Nome da empresa
+                </label>
+                <Input
+                  placeholder="Sua Empresa LTDA"
+                  value={formData.company}
+                  onChange={(e) =>
+                    setFormData({ ...formData, company: e.target.value })
+                  }
+                  className="h-11 rounded-xl border-gray-200 dark:border-neutral-700 focus:border-indigo-500 focus:ring-indigo-500"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Segmento
+                </label>
+                <Input
+                  placeholder="Ex: Varejo, Tecnologia, Saúde..."
+                  value={formData.segment}
+                  onChange={(e) =>
+                    setFormData({ ...formData, segment: e.target.value })
+                  }
+                  className="h-11 rounded-xl border-gray-200 dark:border-neutral-700 focus:border-indigo-500 focus:ring-indigo-500"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  CPF ou CNPJ
+                </label>
+                <Input
+                  placeholder="000.000.000-00 ou 00.000.000/0000-00"
+                  value={formData.taxId}
+                  onChange={(e) =>
+                    setFormData({ ...formData, taxId: e.target.value })
+                  }
+                  className="h-11 rounded-xl border-gray-200 dark:border-neutral-700 focus:border-indigo-500 focus:ring-indigo-500"
+                  required
+                />
+              </div>
+
+              <div className="flex gap-3 pt-4">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setStep("form")}
+                  className="w-1/3 h-12 rounded-xl text-gray-600 dark:text-gray-300 border-gray-200 dark:border-neutral-700"
+                >
+                  Voltar
+                </Button>
+                <Button
+                  type="submit"
+                  className="w-2/3 h-12 text-lg font-semibold bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white rounded-xl shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/30"
+                >
+                  Concluir conta
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-2 pt-4">
+                <div className="w-2 h-2 rounded-full border border-gray-300 dark:border-gray-600"></div>
+                <div className="w-2 h-2 rounded-full bg-indigo-600 border border-indigo-600"></div>
+              </div>
+            </form>
+          </>
+        )}
+
+        {step === "success" && (
           /* Success State */
           <div className="px-8 py-12 text-center space-y-6">
             <div
