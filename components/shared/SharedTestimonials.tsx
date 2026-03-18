@@ -18,7 +18,7 @@ const testimonials: Testimonial[] = [
         name: "Maria Rodriguez",
         role: "Diretora de Operações",
         company: "TechCorp Brasil",
-        avatar: "MR",
+        avatar: "https://randomuser.me/api/portraits/women/44.jpg",
         rating: 5,
     },
     {
@@ -26,7 +26,7 @@ const testimonials: Testimonial[] = [
         name: "João Silva",
         role: "CEO & Fundador",
         company: "StartupXYZ",
-        avatar: "JS",
+        avatar: "https://randomuser.me/api/portraits/men/32.jpg",
         rating: 5,
     },
     {
@@ -34,7 +34,7 @@ const testimonials: Testimonial[] = [
         name: "Ana Santos",
         role: "VP de Customer Success",
         company: "MegaCorp",
-        avatar: "AS",
+        avatar: "https://randomuser.me/api/portraits/women/68.jpg",
         rating: 5,
     },
     {
@@ -42,7 +42,7 @@ const testimonials: Testimonial[] = [
         name: "Carlos Mendes",
         role: "Gerente Comercial",
         company: "Imobiliária Premium",
-        avatar: "CM",
+        avatar: "https://randomuser.me/api/portraits/men/75.jpg",
         rating: 5,
     },
     {
@@ -50,7 +50,7 @@ const testimonials: Testimonial[] = [
         name: "Fernanda Lima",
         role: "Head de Atendimento",
         company: "E-commerce Plus",
-        avatar: "FL",
+        avatar: "https://randomuser.me/api/portraits/women/90.jpg",
         rating: 5,
     },
     {
@@ -58,7 +58,7 @@ const testimonials: Testimonial[] = [
         name: "Ricardo Alves",
         role: "Diretor de CX",
         company: "Banco Digital",
-        avatar: "RA",
+        avatar: "https://randomuser.me/api/portraits/men/86.jpg",
         rating: 5,
     },
 ];
@@ -222,29 +222,6 @@ export default function TestimonialsSection({ theme = "indigo" }: TestimonialsSe
 
                 {/* Header */}
                 <div className="text-center mb-16">
-                    {/* Avatar Stack */}
-                    <div className="flex items-center justify-center mb-5">
-                        <div className="flex -space-x-2.5">
-                            {testimonials.slice(0, 5).map((t, i) => (
-                                <div
-                                    key={i}
-                                    className={`w-8 h-8 rounded-full bg-gradient-to-br ${avatarColors[i]} flex items-center justify-center ring-2 ring-slate-50`}
-                                >
-                                    <span className="text-white font-bold text-[10px]">{t.avatar}</span>
-                                </div>
-                            ))}
-                            <div className="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center ring-2 ring-slate-50">
-                                <span className="text-white font-bold text-[9px]">+1k</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="flex items-center justify-center gap-1 mb-3">
-                        {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                        ))}
-                        <span className="ml-1.5 text-sm font-semibold text-slate-600">4.9/5</span>
-                    </div>
 
                     <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
                         Empresas que{" "}
@@ -293,9 +270,7 @@ export default function TestimonialsSection({ theme = "indigo" }: TestimonialsSe
 
                                         {/* Author */}
                                         <div className="flex items-center gap-3">
-                                            <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${avatarColors[i % avatarColors.length]} flex items-center justify-center flex-shrink-0 shadow-sm`}>
-                                                <span className="text-white font-bold text-xs">{testimonial.avatar}</span>
-                                            </div>
+                                            <img src={testimonial.avatar} alt={testimonial.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0 shadow-sm" />
                                             <div className="min-w-0">
                                                 <p className="font-semibold text-slate-900 text-sm truncate">{testimonial.name}</p>
                                                 <p className="text-xs text-slate-400 truncate">{testimonial.role} · {testimonial.company}</p>
@@ -339,6 +314,24 @@ export default function TestimonialsSection({ theme = "indigo" }: TestimonialsSe
                             <ChevronRight className="w-5 h-5" />
                         </button>
                     </div>
+                </div>
+
+                {/* Avatar Stack + Counter */}
+                <div className="flex items-center justify-center gap-3 mt-6">
+                    <div className="flex -space-x-2">
+                        {testimonials.slice(0, 5).map((t, i) => (
+                            <img
+                                key={i}
+                                src={t.avatar}
+                                alt={t.name}
+                                className="w-7 h-7 rounded-full object-cover ring-2 ring-slate-50"
+                            />
+                        ))}
+                        <div className="w-7 h-7 rounded-full bg-slate-900 flex items-center justify-center ring-2 ring-slate-50">
+                            <span className="text-white font-bold text-[8px]">+1k</span>
+                        </div>
+                    </div>
+                    <span className="text-xs text-slate-400 font-medium">empresas confiam na Aura</span>
                 </div>
             </div>
         </section>
