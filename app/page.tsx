@@ -199,14 +199,14 @@ export default function HomePage() {
                         </div>
                         <div className="space-y-6">
                             <div className="w-full space-y-6">
-                                <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight text-right">
-                                    Caixa de entrada{""}
+                                <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight text-center lg:text-right">
+                                    Caixa de entrada {""}
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">
                                         unificada
-                                    </span>{""}
+                                    </span>{" "}
                                     para todos os canais
                                 </h2>
-                                <p className="text-lg text-gray-600 leading-relaxed text-right">
+                                <p className="text-base sm:text-lg text-gray-600 leading-relaxed text-center lg:text-right">
                                     Centralize todas as conversas de WhatsApp, Instagram Direct,
                                     Facebook Messenger e Telegram em um só lugar. Sua equipe pode
                                     responder clientes de forma organizada e eficiente.
@@ -228,13 +228,13 @@ export default function HomePage() {
                         </div>
                         <div className="space-y-6 lg:order-1">
                             <div className="w-full space-y-6">
-                                <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight text-left">
+                                <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight text-center lg:text-left">
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">
                                         Métricas e relatórios
                                     </span>{""}
                                     em tempo real
                                 </h2>
-                                <p className="text-lg text-gray-600 leading-relaxed text-left">
+                                <p className="text-base sm:text-lg text-gray-600 leading-relaxed text-center lg:text-left">
                                     Visualize KPIs, tempo de resposta, volume de mensagens e
                                     performance da equipe em dashboards personalizáveis. Tome
                                     decisões baseadas em dados.
@@ -245,15 +245,15 @@ export default function HomePage() {
 
                     {/* Automation Section — Gradient Card */}
                     <div
-                        className="rounded-3xl p-12 text-white"
+                        className="rounded-3xl p-6 sm:p-8 lg:p-12 text-white"
                         style={{
                             background:
                                 "linear-gradient(135deg, #4F46E5 0%, #6366F1 40%, #8B5CF6 70%, #A78BFA 100%)",
                         }}
                     >
-                        <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center text-center lg:text-left">
                             <div className="space-y-6">
-                                <h2 className="text-3xl lg:text-4xl font-bold leading-tight">
+                                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
                                     Automatize com Chatbots e APIs
                                 </h2>
                                 <p className="text-lg text-indigo-100 leading-relaxed">
