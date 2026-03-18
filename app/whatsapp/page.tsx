@@ -505,7 +505,11 @@ export default function HomePage() {
             {/* ============================================= */}
             {/* TESTIMONIALS */}
             {/* ============================================= */}
-            <TestimonialsSection theme="green" />
+            <TestimonialsSection theme="green"
+                badgeText="Depoimentos"
+                badgeClass="text-white border-0"
+            //badgeStyle={{ background: "linear-gradient(135deg, #f09433, #dc2743, #bc1888)" }} 
+            />
 
             {/* CTA Section bg-gradient-to-r from-primary to-primary/80*/}
             <section

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 interface Testimonial {
     text: string;
@@ -63,14 +64,7 @@ const testimonials: Testimonial[] = [
     },
 ];
 
-const avatarColors = [
-    "from-indigo-500 to-violet-600",
-    "from-emerald-500 to-teal-600",
-    "from-pink-500 to-rose-600",
-    "from-amber-500 to-orange-600",
-    "from-sky-500 to-blue-600",
-    "from-purple-500 to-fuchsia-600",
-];
+
 
 const themeMap: Record<string, {
     badgeBg: string;
@@ -167,9 +161,12 @@ const themeMap: Record<string, {
 
 interface TestimonialsSectionProps {
     theme?: string;
+    badgeText?: string;
+    badgeClass?: string;
+    badgeStyle?: React.CSSProperties;
 }
 
-export default function TestimonialsSection({ theme = "indigo" }: TestimonialsSectionProps) {
+export default function TestimonialsSection({ theme = "indigo", badgeText = "Depoimentos", badgeClass, badgeStyle }: TestimonialsSectionProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
     const trackRef = useRef<HTMLDivElement>(null);
@@ -217,11 +214,17 @@ export default function TestimonialsSection({ theme = "indigo" }: TestimonialsSe
     const translateX = -(currentIndex * (100 / visibleCount));
 
     return (
-        <section id="testimonials-section" className="py-24 bg-slate-50 overflow-hidden">
+        <section id="testimonials-section" className="pt-10 pb-20 bg-slate-50 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Header */}
                 <div className="text-center mb-16">
+                    <Badge
+                        className={`mb-4 ${badgeClass || `${tc.badgeBg} ${tc.badgeText} border-0`}`}
+                        style={badgeStyle}
+                    >
+                        {badgeText}
+                    </Badge>
 
                     <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
                         Empresas que{" "}

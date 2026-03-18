@@ -46,6 +46,7 @@ import { SharedHowItWorks } from "@/components/shared/SharedHowItWorks";
 import { SharedResources } from "@/components/shared/SharedResources";
 import PricingSection from "@/components/PricingSection";
 import { SharedHero } from "@/components/shared/SharedHero";
+import TestimonialsSection from "@/components/shared/SharedTestimonials";
 
 // =============================================
 // INSTAGRAM THEME COLORS
@@ -709,9 +710,19 @@ export default function InstagramPage() {
             </section>
 
             {/* ============================================= */}
+            {/* TESTIMONIALS */}
+            {/* ============================================= */}
+            <TestimonialsSection
+                theme="pink"
+                badgeText="Depoimentos"
+                badgeClass="text-white border-0"
+                badgeStyle={{ background: "linear-gradient(135deg, #f09433, #dc2743, #bc1888)" }}
+            />
+
+            {/* ============================================= */}
             {/* TESTIMONIALS SECTION */}
             {/* ============================================= */}
-            <section id="testimonials-section" className="py-20">
+            {/* <section id="testimonials-section" className="py-20">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center space-y-4 mb-16">
                         <Badge
@@ -839,7 +850,7 @@ export default function InstagramPage() {
                         </Card>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* ============================================= */}
             {/* CTA SECTION - Instagram Gradient */}
