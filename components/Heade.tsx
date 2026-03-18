@@ -23,6 +23,7 @@ import {
   MessageCircle,
   Instagram,
   Facebook,
+  Bot,
   Send,
   ChevronDown,
   Menu,
@@ -72,6 +73,7 @@ const NavHeader: React.FC = () => {
   else if (pathname.includes("telegram")) themeColor = "sky";
   else if (pathname.includes("messenger")) themeColor = "blue";
   else if (pathname.includes("instagram")) themeColor = "pink";
+  else if (pathname.includes("suporte")) themeColor = "purple";
 
   const themeClasses: Record<string, any> = {
     indigo: { btnPrimaryBg: "from-indigo-600 to-violet-600", btnPrimaryHover: "hover:from-indigo-700 hover:to-violet-700" },
@@ -79,6 +81,7 @@ const NavHeader: React.FC = () => {
     pink: { btnPrimaryBg: "from-pink-600 to-rose-600", btnPrimaryHover: "hover:from-pink-700 hover:to-rose-700" },
     sky: { btnPrimaryBg: "from-sky-500 to-cyan-500", btnPrimaryHover: "hover:from-sky-600 hover:to-cyan-600" },
     blue: { btnPrimaryBg: "from-blue-600 to-sky-600", btnPrimaryHover: "hover:from-blue-700 hover:to-sky-700" },
+    purple: { btnPrimaryBg: "from-purple-600 to-fuchsia-600", btnPrimaryHover: "hover:from-purple-700 hover:to-fuchsia-700" },
   };
 
   const tc = themeClasses[themeColor] || themeClasses.indigo;
@@ -130,9 +133,16 @@ const NavHeader: React.FC = () => {
         {
           label: "Telegram",
           href: "/telegram",
-          description: "Gerencie seus chats de seus bots Telegram em um simples sistema",
+          description: "Bot e mensagens do Telegram",
           icon: <Send className="w-5 h-5 text-white -ml-0.5 mt-0.5" />,
           iconBg: "bg-[#0088cc]",
+        },
+        {
+          label: "Suporte com IA",
+          href: "/suporte",
+          description: "Distribuição inteligente de leads",
+          icon: <Bot className="w-5 h-5 text-white" />,
+          iconBg: "bg-gradient-to-tr from-purple-500 to-fuchsia-500",
         },
       ],
     },
@@ -140,7 +150,7 @@ const NavHeader: React.FC = () => {
       label: "Plataforma",
       href: "#",
       hasDropdown: true,
-      description: "Configurações",
+      description: "Soluções integradas e configurações",
       dropdownItems: [],
     },
   ];

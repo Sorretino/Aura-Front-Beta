@@ -45,6 +45,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { SharedHowItWorks } from "@/components/shared/SharedHowItWorks";
 import { SharedResources } from "@/components/shared/SharedResources";
 import PricingSection from "@/components/PricingSection";
+import { SharedHero } from "@/components/shared/SharedHero";
 
 // =============================================
 // INSTAGRAM THEME COLORS
@@ -88,24 +89,68 @@ export default function InstagramPage() {
                 onClose={() => setIsTourOpen(false)}
                 language={currentLanguage}
             />
-
+            <SharedHero
+                gradientStyle={{
+                    background: "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
+                }}
+                backgroundImageUrl="https://www.callbell.eu/assets/uploads/2023/04/134930878_3622299587855859_8763443633650929663_n-scaled.jpg"
+                badgeText="Plataforma #1 para Instagram Direct"
+                BadgeIcon={Facebook}
+                titlePart1="CRM multi agente"
+                titlePart2="para Instagram"
+                titleHighlight="Direct"
+                titleHighlightColor="text-blue-200"
+                description={
+                    <>
+                        Conecte mais páginas do Instagram e gerencie conversas com seus clientes em uma equipe a partir de {" "}
+                        <span className="text-white font-semibold">
+                            uma única plataforma.
+                        </span>
+                    </>
+                }
+                primaryButtonText="Fale com nossa equipe"
+                primaryButtonTextColor="text-blue-600"
+                secondaryButtonText="Agendar Demo"
+                contactLinkText="fale com nossa equipe no Messenger"
+                ContactIcon={Facebook}
+                imageSrc="https://www.callbell.eu/assets/uploads/2023/04/Instagram.svg"
+                floatingIcons={[
+                    {
+                        Icon: MessageCircle,
+                        bgClass: "w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl hover:shadow-green-500/25",
+                        positionClass: "top-72 right-4",
+                    },
+                    {
+                        Icon: Instagram,
+                        bgClass: "w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl",
+                        positionClass: "bottom-16 left-4",
+                        animationDelay: "1s",
+                    },
+                    {
+                        Icon: Send,
+                        bgClass: "w-12 h-12 bg-sky-400 rounded-xl",
+                        positionClass: "top-16 left-8",
+                        animationDelay: "2s",
+                    },
+                ]}
+            />
             {/* ============================================= */}
             {/* HERO SECTION - Instagram Gradient */}
             {/* ============================================= */}
-            <section
+            {/* <section
                 style={{
                     background:
                         "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
                 }}
                 className="h-screen pt-20 pb-0 text-white overflow-hidden relative"
             >
-                {/* Background Pattern */}
+              
                 <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-transparent"></div>
                 <div className="absolute inset-0" />
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[770px]">
-                        {/* Left Content */}
+                      
                         <div className="space-y-8 lg:pr-8">
                             <div className="space-y-6">
                                 <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
@@ -167,10 +212,10 @@ export default function InstagramPage() {
                             </div>
                         </div>
 
-                        {/* Right Visual - Instagram Icon */}
+                       
                         <div className="relative flex justify-center items-center">
                             <div className="relative w-full h-full">
-                                {/* Central Instagram Icon */}
+                            
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="w-full h-full bg-white rounded-3xl flex items-center justify-center shadow-2xl transform hover:scale-105 transition-transform duration-300">
                                         <img
@@ -181,7 +226,7 @@ export default function InstagramPage() {
                                     </div>
                                 </div>
 
-                                {/* Floating Platform Icons */}
+                              
                                 <div className="absolute top-72 right-4 animate-float">
                                     <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-green-500/25 transition-shadow">
                                         <MessageCircle className="w-8 h-8 text-white" />
@@ -215,7 +260,7 @@ export default function InstagramPage() {
                                     </div>
                                 </div>
 
-                                {/* Decorative Elements */}
+                             
                                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                                     <div className="w-3 h-3 bg-white rounded-full animate-ping"></div>
                                 </div>
@@ -229,7 +274,7 @@ export default function InstagramPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* ============================================= */}
             {/* FEATURES SECTION - Chat (Instagram colors) */}

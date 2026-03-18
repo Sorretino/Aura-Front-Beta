@@ -33,6 +33,7 @@ import { FreeTrialButton } from "@/components/FreeTrial";
 import PricingSection from "@/components/PricingSection";
 import { SharedHowItWorks } from "@/components/shared/SharedHowItWorks";
 import { SharedResources } from "@/components/shared/SharedResources";
+import { SharedFaq } from "@/components/shared/SharedFaq";
 
 // =============================================
 // BRAND COLORS — ROXO / INDIGO (Identidade do Produto)
@@ -405,6 +406,38 @@ export default function HomePage() {
                 </div>
             </section>
 
+            {/* ============================================= */}
+            {/*      FAQ SECTION — Gradient Roxo */}
+            {/* ============================================= */}
+            <SharedFaq
+                titleHighlight="Perguntas"
+                titleRest="Frequentes"
+                subtitle="As respostas para as dúvidas mais comuns de quem está migrando para uma operação de atendimento Omnichannel Multi-agente."
+                theme="indigo"
+                variant="solid-cards"
+                items={[
+                    {
+                        question: "O que é o Aura CRM e como ele ajuda nas vendas?",
+                        answer: "Somos uma Central de Atendimento Omnichannel. Unificamos as caixas do WhatsApp, Instagram, Messenger e Telegram em um único dashboard para que toda a sua equipe humana consiga interagir usando as mesmas contas sem derrubar sessões."
+                    },
+                    {
+                        question: "Posso usar meu próprio WhatsApp atual com múltiplos atendentes?",
+                        answer: "Exatamente! O Aura CRM suporta dois formatos incríveis: você pode usar a API Oficial da Meta para estabilidade e escala máxima, ou simplesmente escaneando o QRCode na tela. Em ambos os casos, toda sua equipe responde clientes simultaneamente sem queda de sessão!"
+                    },
+                    {
+                        question: "O sistema possui Chatbots Inteligentes?",
+                        answer: "Sim! Disponibilizamos um construtor de Fluxos e um assistente IA formidável capaz de pré-qualificar interessados, recolher contatos, solucionar dúvidas repetitivas 24h por dia e enviar os 'Leads Quentes' direto para sua Fila de Corretores."
+                    },
+                    {
+                        question: "Como as 'Filas Inteligentes' e 'Roletas' funcionam?",
+                        answer: "É simples: clientes entram e são distribuídos automaticamente e de forma igualitária (Round Robin) apenas para os atendentes que estiverem com o status 'Online'. Isso evita esquecimentos e agiliza absurdamente o fechamento."
+                    },
+                    {
+                        question: "Existe alguma automação ou integração (APIs / Webhooks)?",
+                        answer: "Com certeza. Nós possuímos integrações robustas para que você conecte o Aura CRM com seu ERP, banco de dados ou fluxos de marketing, permitindo automações via APIs fáceis e envios de mensagens programadas."
+                    }
+                ]}
+            />
             {/* ============================================= */}
             {/* CTA SECTION — Gradient Roxo */}
             {/* ============================================= */}
