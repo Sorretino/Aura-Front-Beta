@@ -50,6 +50,8 @@ import Recurse from "@/components/recurse/Recurses";
 import ScrollTimeline from "@/components/scrollTime/timeScroll";
 import Timeline from "@/components/scrollTime/timevone";
 import { SharedHowItWorks } from "@/components/shared/SharedHowItWorks";
+import AppTime from "@/components/scrollTime/timevone";
+import TestimonialsSection from "@/components/shared/SharedTestimonials";
 
 export default function HomePage() {
     const [currentPage, setCurrentPage] = useState<"home" | "whatsapp-business">(
@@ -316,27 +318,28 @@ export default function HomePage() {
 
             {/* ScrollTime Section */}
 
-            <Timeline />
+            <AppTime />
             {/* ScrollTime Section */}
             {/* Recusos Section */}
             <Recurse currentLanguage={currentLanguage} />
             {/* Recusos Section */}
-           
-        {/* How it Works */}
-        <SharedHowItWorks 
-          badgeText="Como Funciona"
-          titleHighlight="Simples de configurar,"
-          titleRest="poderoso de usar"
-          subtitle="Em apenas alguns passos você terá sua plataforma multitenant funcionando perfeitamente."
-          badgeClass="bg-primary/10 text-primary border-0"
-          themeGradientClass="text-CustonCabe"
-          steps={[
-            { num: "1", title: "Cadastre-se", desc: "Crie sua conta em menos de 2 minutos. Sem complicacões." },
-            { num: "2", title: "Configure seus Tenants", desc: "Adicione seus clientes e configure as permissoes." },
-            { num: "3", title: "Comece a Gerenciar", desc: "Acesse o dashboard e comece a gerenciar todos os seus negócios." }
-          ]}
-        />
- {/* Pricing Section */}
+
+            {/* How it Works */}
+            <SharedHowItWorks
+                badgeText="Como Funciona"
+                titleHighlight="Simples de configurar,"
+                titleRest="poderoso de usar"
+                subtitle="Em apenas alguns passos você terá sua plataforma multitenant funcionando perfeitamente."
+                badgeClass="bg-primary/10 text-primary border-0"
+                themeGradientStyle={{ background: "linear-gradient(135deg, #058563, #075e54)" }}
+                themeGradientClass="bg-gradient-to-r from-[#058563] to-[#075e54]"
+                steps={[
+                    { num: "1", title: "Cadastre-se", desc: "Crie sua conta em menos de 2 minutos. Sem complicacões." },
+                    { num: "2", title: "Configure seus Tenants", desc: "Adicione seus clientes e configure as permissoes." },
+                    { num: "3", title: "Comece a Gerenciar", desc: "Acesse o dashboard e comece a gerenciar todos os seus negócios." }
+                ]}
+            />
+            {/* Pricing Section */}
             <section id="pricing-section" className="py-20">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center space-y-4 mb-16">
@@ -499,110 +502,10 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* Testimonials */}
-            <section id="testimonials-section" className="py-20">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center space-y-4 mb-16">
-                        <Badge className="bg-primary/10 text-primary">Depoimentos</Badge>
-                        <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-                            O que nossos clientes dizem
-                        </h2>
-                        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                            Mais de 1.000 empresas confiam em nossa plataforma para gerenciar
-                            seus negócios.
-                        </p>
-                    </div>
-
-                    <div className="grid lg:grid-cols-3 gap-8">
-                        <Card className="border-0 shadow-lg">
-                            <CardContent className="p-8">
-                                <div className="flex items-center space-x-1 mb-4">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star
-                                            key={i}
-                                            className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                                        />
-                                    ))}
-                                </div>
-                                <p className="text-muted-foreground mb-6">
-                                    "A MultiTenant Pro revolucionou nossa forma de gerenciar
-                                    múltiplos clientes. A segurança e isolamento de dados nos dá
-                                    total confiança."
-                                </p>
-                                <div className="flex items-center space-x-3">
-                                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                                        <span className="text-primary font-semibold">MR</span>
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold">Maria Rodriguez</p>
-                                        <p className="text-sm text-muted-foreground">
-                                            CTO, TechCorp
-                                        </p>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="border-0 shadow-lg">
-                            <CardContent className="p-8">
-                                <div className="flex items-center space-x-1 mb-4">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star
-                                            key={i}
-                                            className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                                        />
-                                    ))}
-                                </div>
-                                <p className="text-muted-foreground mb-6">
-                                    "Implementamos em 2 semanas e já estamos gerenciando 50+
-                                    clientes. O suporte é excepcional e a plataforma é muito
-                                    intuitiva."
-                                </p>
-                                <div className="flex items-center space-x-3">
-                                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                                        <span className="text-primary font-semibold">JS</span>
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold">João Silva</p>
-                                        <p className="text-sm text-muted-foreground">
-                                            CEO, StartupXYZ
-                                        </p>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="border-0 shadow-lg">
-                            <CardContent className="p-8">
-                                <div className="flex items-center space-x-1 mb-4">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star
-                                            key={i}
-                                            className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                                        />
-                                    ))}
-                                </div>
-                                <p className="text-muted-foreground mb-6">
-                                    "A escalabilidade é impressionante. Crescemos de 10 para 200
-                                    tenants sem nenhum problema de performance. Recomendo
-                                    fortemente!"
-                                </p>
-                                <div className="flex items-center space-x-3">
-                                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                                        <span className="text-primary font-semibold">AS</span>
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold">Ana Santos</p>
-                                        <p className="text-sm text-muted-foreground">
-                                            Diretora, MegaCorp
-                                        </p>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </div>
-                </div>
-            </section>
+            {/* ============================================= */}
+            {/* TESTIMONIALS */}
+            {/* ============================================= */}
+            <TestimonialsSection theme="green" />
 
             {/* CTA Section bg-gradient-to-r from-primary to-primary/80*/}
             <section

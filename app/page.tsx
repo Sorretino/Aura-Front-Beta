@@ -34,6 +34,7 @@ import PricingSection from "@/components/PricingSection";
 import { SharedHowItWorks } from "@/components/shared/SharedHowItWorks";
 import { SharedResources } from "@/components/shared/SharedResources";
 import { SharedFaq } from "@/components/shared/SharedFaq";
+import TestimonialsSection from "@/components/shared/SharedTestimonials";
 
 // =============================================
 // BRAND COLORS — ROXO / INDIGO (Identidade do Produto)
@@ -337,74 +338,7 @@ export default function HomePage() {
             {/* ============================================= */}
             {/* TESTIMONIALS */}
             {/* ============================================= */}
-            <section id="testimonials-section" className="py-20">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center space-y-4 mb-16">
-                        <Badge className="bg-indigo-100 text-indigo-700 border-0">
-                            Depoimentos
-                        </Badge>
-                        <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-                            O que nossos clientes dizem
-                        </h2>
-                        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                            Mais de 1.000 empresas confiam em nossa plataforma para centralizar
-                            seus canais de atendimento.
-                        </p>
-                    </div>
-
-                    <div className="grid lg:grid-cols-3 gap-8">
-                        {[
-                            {
-                                text: "A plataforma revolucionou nossa forma de atender clientes. Centralizamos WhatsApp e Instagram em um só lugar e a produtividade triplicou.",
-                                name: "Maria Rodriguez",
-                                role: "CTO, TechCorp",
-                                initials: "MR",
-                            },
-                            {
-                                text: "Implementamos em 2 semanas e já estamos atendendo 50+ clientes em múltiplos canais. O suporte é excepcional e a plataforma é muito intuitiva.",
-                                name: "João Silva",
-                                role: "CEO, StartupXYZ",
-                                initials: "JS",
-                            },
-                            {
-                                text: "A escalabilidade é impressionante. Crescemos de 10 para 200 agentes sem nenhum problema de performance. Recomendo fortemente!",
-                                name: "Ana Santos",
-                                role: "Diretora, MegaCorp",
-                                initials: "AS",
-                            },
-                        ].map((testimonial, i) => (
-                            <Card key={i} className="border-0 shadow-lg">
-                                <CardContent className="p-8">
-                                    <div className="flex items-center space-x-1 mb-4">
-                                        {[...Array(5)].map((_, j) => (
-                                            <Star
-                                                key={j}
-                                                className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                                            />
-                                        ))}
-                                    </div>
-                                    <p className="text-muted-foreground mb-6">
-                                        "{testimonial.text}"
-                                    </p>
-                                    <div className="flex items-center space-x-3">
-                                        <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-full flex items-center justify-center">
-                                            <span className="text-white font-semibold text-sm">
-                                                {testimonial.initials}
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <p className="font-semibold">{testimonial.name}</p>
-                                            <p className="text-sm text-muted-foreground">
-                                                {testimonial.role}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <TestimonialsSection theme="indigo" />
 
             {/* ============================================= */}
             {/*      FAQ SECTION — Gradient Roxo */}

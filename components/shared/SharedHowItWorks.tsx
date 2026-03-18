@@ -53,8 +53,8 @@ export function SharedHowItWorks({
           {steps.map((step, i) => (
             <div key={i} className="text-center space-y-4">
               <div
-                className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto shadow-lg ${themeGradientClass || ""}`}
-                style={themeGradientClass ? undefined : themeGradientStyle}
+                className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto shadow-lg ${!themeGradientStyle ? (themeGradientClass || "") : ""}`}
+                style={themeGradientStyle}
               >
                 <span className="text-2xl font-bold text-white">{step.num}</span>
               </div>
