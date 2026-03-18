@@ -109,22 +109,30 @@ const NavHeader: React.FC = () => {
         {
           label: "WhatsApp",
           href: "/whatsapp",
-          description: "Plataforma principal de mensagens",
+          description: "Conecte suas contas do WhatsApp e comece a gerenciar seus chats",
+          icon: <MessageCircle className="w-5 h-5 text-white" />,
+          iconBg: "bg-green-500",
         },
         {
           label: "Instagram",
           href: "/instagram",
-          description: "Direct Messages do Instagram",
+          description: "Direct suas páginas do Instagram e gerencie suas DMs",
+          icon: <Instagram className="w-5 h-5 text-white" />,
+          iconBg: "bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500",
         },
         {
           label: "Facebook Messenger",
           href: "/messenger",
-          description: "Mensagens do Facebook Messenger",
+          description: "Conecte suas páginas do Facebook e suas mensagens do Messenger",
+          icon: <MessageCircle className="w-5 h-5 text-white" />,
+          iconBg: "bg-gradient-to-tr from-blue-500 to-purple-500",
         },
         {
           label: "Telegram",
           href: "/telegram",
-          description: "Bot e mensagens do Telegram",
+          description: "Gerencie seus chats de seus bots Telegram em um simples sistema",
+          icon: <Send className="w-5 h-5 text-white -ml-0.5 mt-0.5" />,
+          iconBg: "bg-[#0088cc]",
         },
       ],
     },
@@ -149,21 +157,28 @@ const NavHeader: React.FC = () => {
           </button>
 
           {/* Dropdown Content */}
-          <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white/95 backdrop-blur-xl border border-gray-200 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out transform translate-y-2 group-hover:translate-y-0 z-50">
-            <div className="py-2">
+          <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 ${item.label === "Canais" ? "w-[640px]" : "w-[340px]"} bg-white/95 backdrop-blur-xl border border-gray-200 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out transform translate-y-2 group-hover:translate-y-0 z-50`}>
+            <div className={`p-3 ${item.label === "Canais" ? "grid grid-cols-2 gap-2" : "flex flex-col space-y-1"}`}>
               {/* Renderizar dropdownItems */}
               {item.dropdownItems.map(
                 (dropdownItem: any, dropdownIndex: any) => (
                   <Link
                     key={dropdownIndex}
                     href={dropdownItem.href}
-                    className="flex flex-col items-start px-4 py-3 hover:bg-gray-50 transition-colors duration-200 rounded-md mx-2"
+                    className="flex flex-row items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors duration-200 rounded-xl group/item"
                   >
-                    <div className="font-medium text-foreground">
-                      {dropdownItem.label}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {dropdownItem.description}
+                    {dropdownItem.icon && (
+                      <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center shadow-md transform group-hover/item:scale-110 transition-transform duration-300 ${dropdownItem.iconBg}`}>
+                        {dropdownItem.icon}
+                      </div>
+                    )}
+                    <div className="flex flex-col flex-1">
+                      <div className="font-medium text-foreground text-[15px]">
+                        {dropdownItem.label}
+                      </div>
+                      <div className="text-xs text-muted-foreground mt-0.5 leading-[1.3] opacity-80 group-hover/item:opacity-100 transition-opacity">
+                        {dropdownItem.description}
+                      </div>
                     </div>
                   </Link>
                 )
@@ -306,63 +321,62 @@ const NavHeader: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Menu Mobile Dropdown */}
-        <div 
-          className={`md:hidden absolute top-full left-0 w-full bg-white shadow-xl shadow-black/10 transition-all duration-300 overflow-hidden ${
-            isMenuOpen ? "max-h-[80vh] py-4 border-t border-gray-100" : "max-h-0 py-0 overflow-hidden"
-          } rounded-b-2xl`}
+        <div
+          className={`md:hidden absolute top-full left-0 w-full bg-white shadow-xl shadow-black/10 transition-all duration-300 overflow-hidden ${isMenuOpen ? "max-h-[80vh] py-4 border-t border-gray-100" : "max-h-0 py-0 overflow-hidden"
+            } rounded-b-2xl`}
         >
           <div className="px-4 flex flex-col space-y-2 max-h-[70vh] overflow-y-auto">
             {navigationItems.map((item, index) => {
-               if (item.hasDropdown) {
-                   const sectionMap: Record<string, string> = {
-                       Recurso: "features-section",
-                       Plano: "pricing-section",
-                       Depoimentos: "testimonials-section",
-                   };
-                   return (
-                       <button
-                           key={`mobile-${index}`}
-                           onClick={() => {
-                               setIsMenuOpen(false);
-                               scrollToSection(sectionMap[item.label] || `${item.label.toLowerCase()}-section`);
-                           }}
-                           className="text-left w-full py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-md font-medium"
-                       >
-                           {item.label}
-                       </button>
-                   );
-               }
+              if (item.hasDropdown) {
+                const sectionMap: Record<string, string> = {
+                  Recurso: "features-section",
+                  Plano: "pricing-section",
+                  Depoimentos: "testimonials-section",
+                };
+                return (
+                  <button
+                    key={`mobile-${index}`}
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      scrollToSection(sectionMap[item.label] || `${item.label.toLowerCase()}-section`);
+                    }}
+                    className="text-left w-full py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-md font-medium"
+                  >
+                    {item.label}
+                  </button>
+                );
+              }
 
-               return (
-                   <Link
-                      key={`mobile-${index}`}
-                      href={item.href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block w-full py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-md font-medium"
-                   >
-                     {item.label}
-                   </Link>
-               );
+              return (
+                <Link
+                  key={`mobile-${index}`}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full py-3 px-4 text-gray-700 hover:bg-gray-50 rounded-md font-medium"
+                >
+                  {item.label}
+                </Link>
+              );
             })}
-            
-            <div className="pt-4 mt-2 border-t border-gray-100 flex flex-col gap-4 px-2 pb-4">
-               {/* Language Selector in Mobile */}
-               <div className="flex items-center justify-between px-2">
-                 <span className="text-sm font-medium text-gray-700">Idioma:</span>
-                 <LanguageSelector
-                    currentLang={currentLanguage}
-                    onLanguageChange={setCurrentLanguage}
-                 />
-               </div>
 
-               <FreeTrialButton
-                  variant="custom"
-                  className={`w-full text-white bg-gradient-to-r ${tc.btnPrimaryBg} ${tc.btnPrimaryHover} py-3 shadow-md border-0 mt-4`}
-               >
-                 {t.startFree}
-               </FreeTrialButton>
+            <div className="pt-4 mt-2 border-t border-gray-100 flex flex-col gap-4 px-2 pb-4">
+              {/* Language Selector in Mobile */}
+              <div className="flex items-center justify-between px-2">
+                <span className="text-sm font-medium text-gray-700">Idioma:</span>
+                <LanguageSelector
+                  currentLang={currentLanguage}
+                  onLanguageChange={setCurrentLanguage}
+                />
+              </div>
+
+              <FreeTrialButton
+                variant="custom"
+                className={`w-full text-white bg-gradient-to-r ${tc.btnPrimaryBg} ${tc.btnPrimaryHover} py-3 shadow-md border-0 mt-4`}
+              >
+                {t.startFree}
+              </FreeTrialButton>
             </div>
           </div>
         </div>
